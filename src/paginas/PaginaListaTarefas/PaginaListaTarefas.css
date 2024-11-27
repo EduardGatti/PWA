@@ -1,0 +1,22 @@
+.pagina-lista-tarefas_campo-descricao {
+  display: flex;
+  gap: 8px;
+}
+
+.pagina-lista-tarefas_campo-descricao > input {
+  flex: 1;
+}
+
+.pagina-lista-tarefas_item {
+  display: flex;
+  gap: 8px;
+}
+
+.pagina-lista-tarefas_item > span {
+  flex: 1;
+}
+
+.pagina-lista-tarefas_mensagem-vazia {
+  text-align: center;
+  margin-top: 48px;
+}
