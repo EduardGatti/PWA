@@ -12,12 +12,12 @@ const PaginaListaClientes = () => {
   const [listaClientes, setListaClientes] = useState([]);
 
   useEffect(() => {
-    const buscarCliente = async () => {
-
+    const buscarClientes = async () => {
       const response = await instanciaServicoCliente.listar();
-      setListaClientes(response);
+      setListaClientes(response.data);
+    };
 
-    }
+    buscarClientes();
   }, []);
 
   const navegarParaEdicao = (idCliente) => {
@@ -26,8 +26,7 @@ const PaginaListaClientes = () => {
 
   const excluir = (idCliente) => {
     if (confirm('Tem certeza?')) {
-      const listaAtualizada =
-        instanciaServicoCliente.excluirCliente(idCliente);
+      const listaAtualizada = instanciaServicoCliente.excluirCliente(idCliente);
       setListaClientes(listaAtualizada);
     }
   };
@@ -38,25 +37,13 @@ const PaginaListaClientes = () => {
 
       {listaClientes.map((cliente) => {
         return (
-          <div
-            key={cliente.id}
-            className="pagina-lista-clientes__item-cliente"
-          >
+          <div key={cliente.id} className="pagina-lista-clientes__item-cliente">
             {cliente.nome}
 
             <div className="pagina-lista-clientes__item-cliente-acoes">
-              <FaEdit
-                size={24}
-                onClick={() =>
-                  navegarParaEdicao(cliente.id)
-                }
-              />
+              <FaEdit size={24} onClick={() => navegarParaEdicao(cliente.id)} />
 
-              <FaTrash
-                size={24}
-                color="red"
-                onClick={() => excluir(cliente.id)}
-              />
+              <FaTrash size={24} color="red" onClick={() => excluir(cliente.id)} />
             </div>
           </div>
         );

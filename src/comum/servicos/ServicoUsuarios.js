@@ -1,4 +1,4 @@
-import instanciaApi from "./Api";
+import instanciaApi from './Api';
 
 class ServicoUsuarios {
   listar() {
@@ -11,9 +11,7 @@ class ServicoUsuarios {
   }
 
   cadastrarUsuario(usuario) {
-    
-    return instanciaApi.post("/usuarios", usuario);
-
+    return instanciaApi.post('/usuarios', usuario);
   }
 }
 

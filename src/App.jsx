@@ -4,11 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 import VerificarAutenticacao from './comum/componentes/VerificarAutenticacao/VerificarAutenticacao';
-import ListaProdutos from './paginas/ListaProdutos/ListaProdutos';
 import PaginaCadastroCliente from './paginas/PaginaCadastroCliente/PaginaCadastroCliente';
 import PaginaInicial from './paginas/PaginaInicial/PaginaInicial';
 import PaginaListaClientes from './paginas/PaginaListaClientes/PaginaListaClientes';
-import PaginaListaTarefas from './paginas/PaginaListaTarefas/PaginaListaTarefas';
 import PaginaLogin from './paginas/PaginaLogin/PaginaLogin';
 import PaginaMeuPerfil from './paginas/PaginaMeuPerfil/PaginaMeuPerfil';
 import PaginaNovoUsuario from './paginas/PaginaNovoUsuario/PaginaNovoUsuario';
@@ -26,17 +24,10 @@ const router = createBrowserRouter([
     path: '',
     element: <VerificarAutenticacao />,
     children: [
+      // Rotas privadas da app
       {
         path: '',
         element: <PaginaInicial />,
-      },
-      {
-        path: 'lista-produtos',
-        element: <ListaProdutos />,
-      },
-      {
-        path: 'lista-tarefas',
-        element: <PaginaListaTarefas />,
       },
       {
         path: 'lista-clientes',

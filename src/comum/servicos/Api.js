@@ -1,18 +1,19 @@
-import axios from "axios";
-import ServicoAutenticacao from "./ServicoAutenticacao";
+import axios from 'axios';
+import ServicoAutenticacao from './ServicoAutenticacao';
 
 const instanciaApi = axios.create({
-    baseURL: "http://localhost:3000"
+  baseURL: 'http://localhost:3000',
 });
+
 instanciaApi.interceptors.request.use((config) => {
-    const _servicoUsuarios = new ServicoAutenticacao()
-    const usuarioLogado = _servicoUsuarios.buscarUsuarioLogado();
+  const _servicoAutenticacao = new ServicoAutenticacao();
 
-    if (usuarioLogado) {
+  const usuarioLogado = _servicoAutenticacao.buscarUsuarioLogado();
+  if (usuarioLogado) {
+    config.headers['x-usuario'] = usuarioLogado.id;
+  }
 
-        config.headers["x-usuario"] = usuarioLogado.id;
-    }
-    return config;
+  return config;
 });
 
 export default instanciaApi;

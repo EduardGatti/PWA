@@ -15,7 +15,6 @@ const PaginaLogin = () => {
 
   const entrar = async () => {
     try {
-
       if (!email || !senha) {
         toast.error('Preencha todos os campos.');
         return;
