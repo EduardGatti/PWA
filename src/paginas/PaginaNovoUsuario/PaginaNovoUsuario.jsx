@@ -4,8 +4,9 @@ import BotaoCustomizado from '../../comum/componentes/BotaoCustomizado/BotaoCust
 import { toast } from 'react-toastify';
 import ServicoUsuarios from '../../comum/servicos/ServicoUsuarios';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+
 import { formatarComMascara, MASCARA_CELULAR, MASCARA_CEP} from '../../comum/utils/mascaras';
+import axios, { Axios } from 'axios';
 
 const instanciaServicoUsuarios = new ServicoUsuarios();
 
@@ -17,7 +18,7 @@ const PaginaNovoUsuario = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [celular, setCelular] = useState('');
-  const [data_nascimento, setDataNascimento] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
 
   useEffect(() => {
     if (params.id) {
@@ -32,6 +33,7 @@ const PaginaNovoUsuario = () => {
   }, [params.id]);
   
 
+
   const [cep, setCep] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
@@ -40,18 +42,17 @@ const PaginaNovoUsuario = () => {
 
   const cadastrar = async () => {
     try {
-      if (!nome || !email || !senha || !celular || !data_nascimento || !cep) {
+      if (!nome || !email || !senha || !celular || !dataNascimento || !cep) {
         toast.error('Preencha todos os campos.');
         return;
       }
 
       const usuario = {
-        id: params.id ? +params.id : Date.now(),
         nome,
         email,
         senha,
         celular,
-        dataNascimento: data_nascimento,
+        dataNascimento,
         cep
       };
       
@@ -60,6 +61,7 @@ const PaginaNovoUsuario = () => {
       toast.success('Cadastro criado com sucesso.');
       navigate('/login');
     } catch (error) {
+      console.error(error);
       toast.error(error.response.data);
     }
   };
@@ -117,7 +119,7 @@ const PaginaNovoUsuario = () => {
         <input
           type="date"
           placeholder="Digite sua data de nascimento"
-          value={data_nascimento}
+          value={dataNascimento}
           onChange={(e) => setDataNascimento(e.target.value)}
         />
       </div>
